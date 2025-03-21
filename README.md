@@ -40,9 +40,9 @@ API документирован с использованием Swagger (дос
 
 1. **Клонирование репозитория**:
    ```bash
-   git clone https://github.com/yourusername/calorie-tracker.git
+   git clone https://github.com/Tonkorg/1221Systems_test.git
    cd calorie-tracker
-   
+   ```
 2. **Настройка переменных окружения**:
 
 Создайте файл .env в корне проекта и добавьте следующие переменные:
@@ -77,7 +77,7 @@ docker-compose up --build
 1. **Клонирование репозитория**
 
 ```bash
-git clone https://github.com/yourusername/calorie-tracker.git
+git clone https://github.com/Tonkorg/1221Systems_test.git
 cd calorie-tracker
 ```
 2. Настройка базы данных:
