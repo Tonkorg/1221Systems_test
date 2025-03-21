@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
+import org.hibernate.validator.constraints.UniqueElements;
 
 @Data
 @Builder
@@ -19,6 +20,7 @@ public class UserDTO {
 
 
     @Email(message = "Неверный email")
+
     private String email;
 
     @Min(value = 1,message = "Минимальный возраст 1 год") @Max(value = 80, message = "Максимальный возраст не может больше 80 лет")
