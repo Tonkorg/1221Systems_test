@@ -12,11 +12,11 @@ public class CalorieCalculatorService {
 
 
         if (user.getAge() == null || user.getWeight() == null || user.getHeight() == null || user.getGoal() == null) {
-            throw new IllegalArgumentException("All user parameters (age, weight, height, goal) must be provided");
+            throw new IllegalArgumentException("Все параметры пользователя (возраст, вес, рост, цель) должны быть указаны.");
         }
 
-        double bmr = 447.593 + (9.247 * user.getWeight()) +
-                (3.098 * user.getHeight()) - (4.330 * user.getAge());
+        double bmr = 88.362 + (13.397 * user.getWeight()) +
+                (4.799 * user.getHeight()) - (5.677 * user.getAge());
 
         return switch (user.getGoal()) {
             case WEIGHT_LOSS -> bmr * 0.85;
