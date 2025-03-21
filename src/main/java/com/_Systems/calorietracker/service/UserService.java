@@ -21,10 +21,17 @@ public class UserService {
     private UserMapper userMapper;
 
     public User createUser(UserDTO dto) {
-        User user = userMapper.toEntity(dto);
-        double dailyNorm = calorieCalculatorService.calculateDailyNorm(user);
-        user.setDailyCalorieNorm(dailyNorm);
-        return userRepository.save(user);
+       try {
+
+
+           User user = userMapper.toEntity(dto);
+           double dailyNorm = calorieCalculatorService.calculateDailyNorm(user);
+           user.setDailyCalorieNorm(dailyNorm);
+           return userRepository.save(user);
+       }
+       catch(Exception e) {
+           throw new ResourceNotFoundException("Пользователя не получается создать, проверьте введенные данные");
+       }
     }
 
     public User findById(Long id) {

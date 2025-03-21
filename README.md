@@ -169,3 +169,10 @@ Content-Type: application/json
 ```bash
 mvn test
 ```
+
+
+## Postman-коллекция
+
+Для тестирования API используйте файл `CalorieTrackerAPI_v1.postman_collection.json` в корне репозитория. Импортируйте его в Postman через `File > Import`.
+
+[CalorieTrackerAPI.postman_collection.json](CalorieTrackerAPI.postman_collection.json)

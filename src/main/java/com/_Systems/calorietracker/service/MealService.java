@@ -36,6 +36,13 @@ public class MealService {
     }
 
     public List<Meal> getMealsByUserAndDate(Long userId, LocalDateTime start, LocalDateTime end) {
+
+        User user = userService.findById(userId);
+
+        if (user == null)
+        {
+            throw new ResourceNotFoundException("Пользователя с id: " + userId + " не существует");
+        }
         return mealRepository.findByUserIdAndDateTimeBetween(userId, start, end);
     }
 
@@ -46,6 +53,14 @@ public class MealService {
     }
 
     public DailyReportDTO getDailyReport(Long userId, LocalDate date) {
+
+        User user = userService.findById(userId);
+
+        if (user == null)
+        {
+            throw new ResourceNotFoundException("Пользователя с id: " + userId + " не существует");
+        }
+
         LocalDateTime start = date.atStartOfDay();
         LocalDateTime end = date.atTime(LocalTime.MAX);
 
@@ -69,6 +84,11 @@ public class MealService {
     public CalorieNormCheckDTO checkCalorieNorm(Long userId, LocalDate date) {
         DailyReportDTO dailyReport = getDailyReport(userId, date);
         User user = userService.findById(userId);
+
+        if (user == null)
+        {
+            throw new ResourceNotFoundException("Пользователя с id: " + userId + " не существует");
+        }
         Double dailyNorm = user.getDailyCalorieNorm();
 
         return CalorieNormCheckDTO.builder()
@@ -81,8 +101,17 @@ public class MealService {
 
 
     public List<DailyReportDTO> getHistory(Long userId, LocalDate startDate, LocalDate endDate) {
+        User user = userService.findById(userId);
+
+        if (user == null)
+        {
+            throw new ResourceNotFoundException("Пользователя с id: " + userId + " не существует");
+        }
+
         return startDate.datesUntil(endDate.plusDays(1))
                 .map(date -> getDailyReport(userId, date))
                 .collect(Collectors.toList());
     }
+
+
 }
