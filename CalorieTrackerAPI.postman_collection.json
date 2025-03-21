@@ -1,0 +1,176 @@
+{
+    "info": {
+        "name": "Calorie Tracker API",
+        "description": "Коллекция для тестирования REST API сервиса отслеживания калорий",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Create User",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"age\": 30,\n    \"weight\": 70.0,\n    \"height\": 170.0,\n    \"goal\": \"MAINTENANCE\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/api/users",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8080",
+                    "path": ["api", "users"]
+                },
+                "description": "Создает нового пользователя с расчетом дневной нормы калорий."
+            },
+            "response": []
+        },
+        {
+            "name": "Create Dish",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"name\": \"Salad\",\n    \"calories\": 200.0,\n    \"protein\": 10.0,\n    \"fat\": 5.0,\n    \"carbs\": 15.0\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/api/dishes",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8080",
+                    "path": ["api", "dishes"]
+                },
+                "description": "Добавляет новое блюдо."
+            },
+            "response": []
+        },
+        {
+            "name": "Create Meal",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"userId\": 1,\n    \"dishIds\": [1],\n    \"dateTime\": \"2025-03-21T12:00:00\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/api/meals",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8080",
+                    "path": ["api", "meals"]
+                },
+                "description": "Добавляет прием пищи для пользователя."
+            },
+            "response": []
+        },
+        {
+            "name": "Get Daily Report",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8080/api/reports/daily/1?date=2025-03-21",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8080",
+                    "path": ["api", "reports", "daily", "1"],
+                    "query": [
+                        {
+                            "key": "date",
+                            "value": "2025-03-21"
+                        }
+                    ]
+                },
+                "description": "Получает отчет за день для пользователя."
+            },
+            "response": []
+        },
+        {
+            "name": "Check Calorie Norm",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8080/api/reports/check-norm/1?date=2025-03-21",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8080",
+                    "path": ["api", "reports", "check-norm", "1"],
+                    "query": [
+                        {
+                            "key": "date",
+                            "value": "2025-03-21"
+                        }
+                    ]
+                },
+                "description": "Проверяет, уложился ли пользователь в норму калорий за день."
+            },
+            "response": []
+        },
+        {
+            "name": "Get History Report",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8080/api/reports/history/1?startDate=2025-03-20&endDate=2025-03-22",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8080",
+                    "path": ["api", "reports", "history", "1"],
+                    "query": [
+                        {
+                            "key": "startDate",
+                            "value": "2025-03-20"
+                        },
+                        {
+                            "key": "endDate",
+                            "value": "2025-03-22"
+                        }
+                    ]
+                },
+                "description": "Получает историю питания за период."
+            },
+            "response": []
+        },
+        {
+            "name": "Error Test - User Not Found",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8080/api/reports/daily/999?date=2025-03-21",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8080",
+                    "path": ["api", "reports", "daily", "999"],
+                    "query": [
+                        {
+                            "key": "date",
+                            "value": "2025-03-21"
+                        }
+                    ]
+                },
+                "description": "Тест обработки ошибки для несуществующего пользователя."
+            },
+            "response": []
+        }
+    ]
+}
